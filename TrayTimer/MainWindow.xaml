@@ -40,7 +40,7 @@
         
         <!-- Tray Icon, Close Command & Notifications -->
         <tb:TaskbarIcon Visibility="Visible"
-                        IconSource="./Bulb.ico"
+                        IconSource="./ResourcesAndHelpers/Bulb.ico"
                         ToolTipText="{Binding ToolTipText, UpdateSourceTrigger=PropertyChanged}"
                         DoubleClickCommand="{Binding TrayCloseCommand}"
                         LeftClickCommand="{Binding TrayLeftClickCommand}"/>
