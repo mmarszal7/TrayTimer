@@ -7,6 +7,7 @@ namespace TrayTimer
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainViewModel();
         }
     }
 }

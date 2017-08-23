@@ -1,5 +1,4 @@
-/TrayTimer/bin
-/TrayTimer/obj
-/TrayTimer/package
+/**/bin
+/**/obj
+/**/packages
 /**/.suo
-/.vs/TrayTimer/v15/*.suo

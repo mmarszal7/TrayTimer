@@ -3,11 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-        xmlns:ViewModels="clr-namespace:TrayTimer"
-        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-        DataContext="{dxmvvm:ViewModelSource Type=ViewModels:MainViewModel}"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="500" MinHeight="250" MinWidth="500" MaxHeight="250" MaxWidth="500">
 
@@ -29,13 +25,6 @@
     <Window.WindowState>
         <Binding Path="WindowVisability" Mode="TwoWay"/>
     </Window.WindowState>
-
-    <!-- Tray Icon, Close Command & Notifications -->
-    <dxmvvm:Interaction.Behaviors>
-        <dx:NotifyIconService>
-            <dxb:PopupMenu Visibility="Visible"/>
-        </dx:NotifyIconService>
-    </dxmvvm:Interaction.Behaviors>
     
     <Grid Margin="40 40">
         <Grid.RowDefinitions>
@@ -48,7 +37,14 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-
+        
+        <!-- Tray Icon, Close Command & Notifications -->
+        <tb:TaskbarIcon Visibility="Visible"
+                        IconSource="./Bulb.ico"
+                        ToolTipText="Double click to close"
+                        DoubleClickCommand="{Binding TrayCloseCommand}"
+                        LeftClickCommand="{Binding TrayLeftClickCommand}"/>
+        
         <Label Content="Notification text:" Grid.Column="0" Grid.Row="0"/>
         <TextBox Text="{Binding NotificationText}" Grid.Column="1" Grid.Row="0" Padding="5"/>
 
