@@ -15,6 +15,8 @@ namespace TrayTimer
         public string windowVisability = "Normal";
         private DispatcherTimer timer;
         Notification notificationWindow;
+        private int clicks = 0;
+        private int allTicks = 0;
 
         public string WindowVisability
         {
@@ -22,6 +24,18 @@ namespace TrayTimer
             set
             {
                 windowVisability = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string ToolTipText { get { return "Double click to close. \n Number of clicks: " + clicks.ToString() + "/" + allTicks.ToString(); } }
+
+        public int Clicks
+        {
+            get { return clicks; }
+            set
+            {
+                clicks = value;
                 RaisePropertyChanged();
             }
         }
@@ -50,9 +64,14 @@ namespace TrayTimer
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            if (notificationWindow != null) notificationWindow.Close();
+            if (notificationWindow != null)
+            {
+                Clicks += notificationWindow.NotificationClicks;
+                notificationWindow.Close();
+            }
             notificationWindow = new Notification(NotificationText);
             notificationWindow.Show();
+            allTicks++;
         }
 
         #endregion

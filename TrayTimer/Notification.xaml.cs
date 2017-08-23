@@ -7,6 +7,9 @@ namespace TrayTimer
 {
     public partial class Notification : Window
     {
+        public int NotificationClicks = 0;
+        private void NotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e) { NotificationClicks++; }
+
         private Random rnd = new Random();
         private SolidColorBrush[] ColorList = new SolidColorBrush[5]
         {

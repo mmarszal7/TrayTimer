@@ -7,7 +7,7 @@
         Title="Notification Popup" Width="300" SizeToContent="Height"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowInTaskbar="False">
 
-    <Grid Width="200">
+    <Grid Width="200" MouseLeftButtonDown="NotificationClick">
         <Border x:Name="NotificationBackground" Padding="10" CornerRadius="10,10,10,10" Background="Black" BorderBrush="White" BorderThickness="2">
             <Grid Margin="20">
                 <Grid.Resources>
@@ -18,8 +18,8 @@
                 <TextBlock x:Name="TextField" Text="{Binding TextField}" FontWeight="Bold" FontSize="16" Foreground="White"/>
             </Grid>
         </Border>
-
-    <!-- Animations -->
+        
+        <!-- Animations -->
         <Grid.Triggers>
             <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                 <BeginStoryboard>
