@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TrayTimer"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:ViewModels="clr-namespace:TrayTimer"
@@ -33,15 +32,9 @@
 
     <!-- Tray Icon, Close Command & Notifications -->
     <dxmvvm:Interaction.Behaviors>
-        <dx:DXMessageBoxService/>
-        <dx:NotifyIconService LeftClickCommand="{Binding TrayLeftClickCommand}">
+        <dx:NotifyIconService>
             <dxb:PopupMenu Visibility="Visible"/>
         </dx:NotifyIconService>
-        <dxmvvm:NotificationService CustomNotificationPosition="BottomRight"
-                                    CustomNotificationDuration="00:10:00.0"
-                                    CustomNotificationTemplate="{StaticResource CustomNotificationTemplate}"
-                                    UseWin8NotificationsIfAvailable="False">
-        </dxmvvm:NotificationService>
     </dxmvvm:Interaction.Behaviors>
     
     <Grid Margin="40 40">
@@ -59,7 +52,7 @@
         <Label Content="Notification text:" Grid.Column="0" Grid.Row="0"/>
         <TextBox Text="{Binding NotificationText}" Grid.Column="1" Grid.Row="0" Padding="5"/>
 
-        <Label Content="Time interval:" Grid.Column="0" Grid.Row="2"/>
+        <Label Content="Time interval [min]:" Grid.Column="0" Grid.Row="2"/>
         <TextBox Text="{Binding TimeInterval}" Grid.Column="1" Grid.Row="2" Padding="5"/>
 
         <Button Content="Set timer" Command="{Binding SetTimerCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3"/>

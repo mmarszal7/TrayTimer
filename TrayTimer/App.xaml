@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:TrayTimer"
              StartupUri="MainWindow.xaml">
+    <!--DevExpress/MainWindow-->
     <Application.Resources>
         <DataTemplate x:Key="CustomNotificationTemplate">
-            <Grid Width="200" HorizontalAlignment="Right">
-                <Border Padding="10" CornerRadius="10,10,10,10" Background="Black" BorderBrush="White" BorderThickness="2">
+                <Grid Width="200">
+                <Border Padding="10" CornerRadius="10" Background="Black" BorderBrush="White" BorderThickness="2">
                     <Grid Margin="20">
                         <Grid.Resources>
                             <Style TargetType="TextBlock">

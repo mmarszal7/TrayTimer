@@ -3,34 +3,21 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Xpf.Core;
 using System;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace TrayTimer
 {
-    #region NotificationViewModel 
-
-    [POCOViewModel]
-    public class NotificationViewModel
-    {
-        public virtual string Text { get; set; }
-        public virtual int Time { get; set; }
-    }
-
-    #endregion
-
     [POCOViewModel]
     public class MainViewModel : ViewModelBase
     {
         #region Properties 
 
-        public virtual int TimeInterval { get; set; } = 5;
-        public virtual string NotificationText { get; set; } = "Sample";
-
+        public virtual double TimeInterval { get; set; } = 1;
+        public virtual string NotificationText { get; set; } = "Reminder";
         public virtual string WindowVisability { get; set; } = "Normal";
-        public virtual INotificationService CustomNotificationService { get { return null; } }
-        private NotificationViewModel notificationViewModel;
-        private INotification notification;
         private DispatcherTimer timer;
+        Notification notificationWindow;
 
         #endregion
 
@@ -53,17 +40,16 @@ namespace TrayTimer
 
         public void SetTimer()
         {
-            //TimeInterval*60
             WindowVisability = "Minimized";
-            timer = new DispatcherTimer(TimeSpan.FromSeconds(TimeInterval), DispatcherPriority.Send, OnTimerTick, Dispatcher.CurrentDispatcher);
+            timer = new DispatcherTimer(TimeSpan.FromSeconds(TimeInterval*60), DispatcherPriority.Send, OnTimerTick, Dispatcher.CurrentDispatcher);
             timer.Start();
         }
 
         private void OnTimerTick(object sender, EventArgs e)
         {
-            notificationViewModel = ViewModelSource.Create(() => new NotificationViewModel() { Text = NotificationText, Time = TimeInterval });
-            notification = CustomNotificationService.CreateCustomNotification(notificationViewModel);
-            notification.ShowAsync();
+            if(notificationWindow != null) notificationWindow.Close();
+            notificationWindow = new Notification(NotificationText);
+            notificationWindow.Show();
         }
 
         #endregion
