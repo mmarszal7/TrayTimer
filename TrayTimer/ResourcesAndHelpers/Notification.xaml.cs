@@ -8,7 +8,9 @@ namespace TrayTimer
     public partial class Notification : Window
     {
         public int NotificationClicks = 0;
-        private void NotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e) { NotificationClicks++; }
+        private void NotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e) { NotificationClicks = 1 ; }
+        private int marginX = 150;
+        private int marginY = 20;
 
         private Random rnd = new Random();
         private SolidColorBrush[] ColorList = new SolidColorBrush[5]
@@ -27,9 +29,9 @@ namespace TrayTimer
             Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
                 var workingArea = System.Windows.SystemParameters.WorkArea;
-
-                this.Left = rnd.Next(1, (int)workingArea.Width - 200);
-                this.Top = rnd.Next(1, (int)workingArea.Height - 50);
+                
+                this.Left = rnd.Next(marginX, (int)workingArea.Width - marginX - (int)NotificationBody.Width);
+                this.Top = rnd.Next(marginY, (int)workingArea.Height - marginY - (int)NotificationBody.Height);
             }));
 
             TextField.Text = title;

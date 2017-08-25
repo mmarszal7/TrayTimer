@@ -7,12 +7,13 @@
         Title="Notification Popup" Width="300" SizeToContent="Height"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowInTaskbar="False">
 
-    <Grid Width="200" MouseLeftButtonDown="NotificationClick">
+    <Grid x:Name="NotificationBody" Width="150" Height="85" MouseLeftButtonDown="NotificationClick">
         <Border x:Name="NotificationBackground" Padding="10" CornerRadius="10,10,10,10" Background="Black" BorderBrush="White" BorderThickness="2">
-            <Grid Margin="20">
+            <Grid Margin="15 20 20 20">
                 <Grid.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
                     </Style>
                 </Grid.Resources>
                 <TextBlock x:Name="TextField" Text="{Binding TextField}" FontWeight="Bold" FontSize="16" Foreground="White"/>
