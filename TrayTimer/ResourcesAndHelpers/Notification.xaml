@@ -9,7 +9,7 @@
 
     <Grid x:Name="NotificationBody" Width="150" Height="85" MouseLeftButtonDown="NotificationClick" MouseEnter="NotificationFocus">
         <Border x:Name="NotificationBackground" Padding="10" CornerRadius="10,10,10,10" Background="Black" BorderBrush="White" BorderThickness="2">
-            <Grid Margin="15 20 20 20">
+            <Grid Margin="10 20 15 20">
                 <Grid.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="FontSize" Value="12"/>
