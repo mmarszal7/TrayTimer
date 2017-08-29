@@ -7,7 +7,7 @@
         Title="Notification Popup" Width="300" SizeToContent="Height"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowInTaskbar="False">
 
-    <Grid x:Name="NotificationBody" Width="150" Height="85" MouseLeftButtonDown="NotificationClick" MouseEnter="NotificationFocus">
+    <Grid x:Name="NotificationBody" Width="150" Height="85" MouseLeftButtonDown="NotificationClick" MouseLeave="NotificationMouseLeave" MouseEnter="NotificationMouseEnter">
         <Border x:Name="NotificationBackground" Padding="10" CornerRadius="10,10,10,10" Background="Black" BorderBrush="White" BorderThickness="2">
             <Grid Margin="10 20 15 20">
                 <Grid.Resources>
@@ -17,6 +17,7 @@
                     </Style>
                 </Grid.Resources>
                 <TextBlock x:Name="TextField" Text="{Binding TextField}" FontWeight="Bold" FontSize="16" Foreground="White"/>
+                <ProgressBar x:Name="Loading" VerticalAlignment="Bottom" Margin="5 5 5 -10" Value="0" Minimum="0" Maximum="100" Foreground="Yellow" Background="Black"/>
             </Grid>
         </Border>
 

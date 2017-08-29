@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace TrayTimer
 {
@@ -11,6 +12,7 @@ namespace TrayTimer
         private int marginY = 20;
         private int numberOfEscapes = 0;
         private string notificationTitle;
+        private DispatcherTimer timer;
 
         private Random rnd = new Random();
         private SolidColorBrush[] ColorList = new SolidColorBrush[5]
@@ -35,17 +37,24 @@ namespace TrayTimer
             var workingArea = System.Windows.SystemParameters.WorkArea;
             this.Left = rnd.Next(marginX, (int)workingArea.Width - marginX - (int)NotificationBody.Width);
             this.Top = rnd.Next(marginY, (int)workingArea.Height - marginY - (int)NotificationBody.Height);
-            
-            TextField.Text = String.Format("{0} ({1})", notificationTitle, numberOfEscapes);
+
+            TextField.Text = String.Format("{0}", notificationTitle, numberOfEscapes); // ({1})
             NotificationBackground.Background = ColorList[rnd.Next(0, 4)];
         }
 
         private void NotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e) { NotificationClicks = 1; }
-        private void NotificationFocus(object sender, System.Windows.Input.MouseEventArgs e)
+        private void NotificationMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            numberOfEscapes--;
-            if (numberOfEscapes >= 0) { DrawPosition(); }
+            //numberOfEscapes--;
+            //if (numberOfEscapes >= 0) { DrawPosition(); }
+            timer = new DispatcherTimer(TimeSpan.FromSeconds(0.03), DispatcherPriority.Send, OnTick, Dispatcher.CurrentDispatcher);
+            timer.Start();
         }
-
+        private void NotificationMouseLeave(object sender, RoutedEventArgs e) { timer.Stop(); }
+        private void OnTick(object sender, EventArgs e)
+        {
+            if (Loading.Value < 100) Loading.Value++;
+            else timer.Stop();
+        }
     }
 }
