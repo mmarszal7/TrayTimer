@@ -25,7 +25,7 @@
     <Window.WindowState>
         <Binding Path="WindowVisability" Mode="TwoWay"/>
     </Window.WindowState>
-    
+
     <Grid Margin="40 40">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -37,19 +37,27 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        
+
         <!-- Tray Icon, Close Command & Notifications -->
         <tb:TaskbarIcon Visibility="Visible"
                         IconSource="./ResourcesAndHelpers/Bulb.ico"
                         ToolTipText="{Binding ToolTipText, UpdateSourceTrigger=PropertyChanged}"
                         DoubleClickCommand="{Binding TrayCloseCommand}"
                         LeftClickCommand="{Binding TrayLeftClickCommand}"/>
-        
+
         <Label Content="Notification text:" Grid.Column="0" Grid.Row="0"/>
-        <TextBox Text="{Binding NotificationText}" Grid.Column="1" Grid.Row="0" Padding="5"/>
+        <TextBox Text="{Binding NotificationText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Padding="5">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding SetTimerCommand}" />
+            </TextBox.InputBindings>
+        </TextBox>
 
         <Label Content="Time interval [min]:" Grid.Column="0" Grid.Row="2"/>
-        <TextBox Text="{Binding TimeInterval}" Grid.Column="1" Grid.Row="2" Padding="5"/>
+        <TextBox Text="{Binding TimeInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Padding="5">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding SetTimerCommand}" />
+            </TextBox.InputBindings>
+        </TextBox>
 
         <Button Content="Set timer" Command="{Binding SetTimerCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3"/>
     </Grid>

@@ -54,7 +54,12 @@ namespace TrayTimer
         private void OnTick(object sender, EventArgs e)
         {
             if (Loading.Value < 100) Loading.Value++;
-            else timer.Stop();
+            else
+            {
+                timer.Stop();
+                NotificationClicks++;
+                this.Close();
+            }
         }
     }
 }

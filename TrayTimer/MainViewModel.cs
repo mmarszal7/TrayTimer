@@ -10,13 +10,34 @@ namespace TrayTimer
     {
         #region Properties 
 
-        public double TimeInterval { get; set; } = 1;
-        public string NotificationText { get; set; } = "Reminder";
+        public double timeInterval = 1;
+        public string notificationText = "Reminder";
         public string windowVisability = "Normal";
         private DispatcherTimer timer;
         Notification notificationWindow;
         private int clicks = 0;
         private int allTicks = 0;
+
+        public string ToolTipText { get { return "Double click to close. \n Number of clicks: " + clicks.ToString() + "/" + allTicks.ToString(); } }
+
+        public double TimeInterval
+        {
+            get { return timeInterval; }
+            set
+            {
+                timeInterval = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string NotificationText
+        {
+            get { return notificationText; }
+            set
+            {
+                notificationText = value;
+            }
+        }
 
         public string WindowVisability
         {
@@ -24,11 +45,8 @@ namespace TrayTimer
             set
             {
                 windowVisability = value;
-                RaisePropertyChanged();
             }
         }
-
-        public string ToolTipText { get { return "Double click to close. \n Number of clicks: " + clicks.ToString() + "/" + allTicks.ToString(); } }
 
         public int Clicks
         {
@@ -58,6 +76,7 @@ namespace TrayTimer
         public void SetTimer()
         {
             WindowVisability = "Minimized";
+            RaisePropertyChanged();
             timer = new DispatcherTimer(TimeSpan.FromSeconds(TimeInterval * 60), DispatcherPriority.Send, OnTimerTick, Dispatcher.CurrentDispatcher);
             timer.Start();
         }

@@ -33,7 +33,7 @@
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-            <EventTrigger RoutedEvent="Grid.MouseDown">
+            <!--<EventTrigger RoutedEvent="Grid.MouseDown">
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
@@ -42,7 +42,7 @@
                         </DoubleAnimationUsingKeyFrames>
                     </Storyboard>
                 </BeginStoryboard>
-            </EventTrigger>
+            </EventTrigger>-->
         </Grid.Triggers>
 
         <Grid.RenderTransform>
