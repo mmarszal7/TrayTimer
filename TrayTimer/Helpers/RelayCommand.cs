@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Input;
-
-namespace TrayTimer
+﻿namespace TrayTimer.Helpers
 {
+    using System;
+    using System.Windows.Input;
+
     public class RelayCommand : ICommand
     {
         readonly Action _execute;
