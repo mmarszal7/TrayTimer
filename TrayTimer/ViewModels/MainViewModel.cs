@@ -4,7 +4,7 @@
 
     public class MainViewModel : BaseViewModel
     {
-        private Notification NotificationWindow;
+        public Notification NotificationWindow { get; set; }
         public double NotificationTimeInterval { get; set; } = 1;
         public string NotificationText { get; set; } = "Reminder";
         public bool WindowVisibility { get; set; } = true;

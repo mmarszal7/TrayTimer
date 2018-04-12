@@ -7,6 +7,7 @@
         xmlns:c="clr-namespace:TrayTimer.Converters"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        Topmost="{Binding WindowVisibility}"
         ShowInTaskbar="False"
         Title="Reminder" Height="205" Width="400">
 
@@ -14,11 +15,11 @@
         <c:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <ContextMenu x:Shared="false" x:Key="SystemTrayMenu">
-            <MenuItem Header="Exit" Command="{Binding TrayCloseCommand}" />
             <MenuItem Header="Settings">
-                <MenuItem Header="Fixed color" IsCheckable="True" IsChecked="{Binding NotificationWindow.IsColorRandom}"/>
-                <MenuItem Header="Fixed position" IsCheckable="True" IsChecked="{Binding NotificationWindow.IsPositionRandom}"/>
+                <MenuItem Header="Random colors" IsCheckable="True" IsChecked="{Binding NotificationWindow.IsColorRandom, UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="Random positions" IsCheckable="True" IsChecked="{Binding NotificationWindow.IsPositionRandom, UpdateSourceTrigger=PropertyChanged}"/>
             </MenuItem>
+            <MenuItem Header="Exit" Command="{Binding TrayCloseCommand}" />
         </ContextMenu>
         
         <Style x:Key="BaseControl" TargetType="Control">
@@ -45,7 +46,7 @@
                         LeftClickCommand="{Binding TrayLeftClickCommand}"/>
 
         <Label Content="Notification text:"/>
-        <TextBox Text="{Binding NotificationText, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="NotificationTextBox" Text="{Binding NotificationText, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Time interval [min]:"/>
         <TextBox Text="{Binding NotificationTimeInterval, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Content="Set timer" Command="{Binding SetTimerCommand}" IsDefault="True" HorizontalAlignment="Right"/>

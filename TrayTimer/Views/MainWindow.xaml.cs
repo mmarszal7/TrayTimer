@@ -9,6 +9,7 @@
         {
             InitializeComponent();
             this.DataContext = viewModel;
+            NotificationTextBox.Focus();
         }
     }
 }
