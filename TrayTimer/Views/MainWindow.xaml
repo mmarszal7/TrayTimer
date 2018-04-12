@@ -12,9 +12,15 @@
 
     <Window.Resources>
         <c:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <ContextMenu x:Shared="false" x:Key="SysTrayMenu">
+
+        <ContextMenu x:Shared="false" x:Key="SystemTrayMenu">
             <MenuItem Header="Exit" Command="{Binding TrayCloseCommand}" />
+            <MenuItem Header="Settings">
+                <MenuItem Header="Fixed color" IsCheckable="True" IsChecked="{Binding NotificationWindow.IsColorRandom}"/>
+                <MenuItem Header="Fixed position" IsCheckable="True" IsChecked="{Binding NotificationWindow.IsPositionRandom}"/>
+            </MenuItem>
         </ContextMenu>
+        
         <Style x:Key="BaseControl" TargetType="Control">
             <Setter Property="Height" Value="25"/>
         </Style>
@@ -35,14 +41,13 @@
     
     <StackPanel Margin="20 10">
         <tb:TaskbarIcon IconSource="../Resources/Bulb.ico"
-                        ContextMenu="{StaticResource SysTrayMenu}"
+                        ContextMenu="{StaticResource SystemTrayMenu}"
                         LeftClickCommand="{Binding TrayLeftClickCommand}"/>
 
         <Label Content="Notification text:"/>
-        <TextBox Text="{Binding NotificationText, Mode=TwoWay}"/>
+        <TextBox Text="{Binding NotificationText, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Time interval [min]:"/>
-        <TextBox Text="{Binding TimeInterval, Mode=TwoWay}"/>
+        <TextBox Text="{Binding NotificationTimeInterval, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Content="Set timer" Command="{Binding SetTimerCommand}" IsDefault="True" HorizontalAlignment="Right"/>
     </StackPanel>
-
 </Window>
