@@ -8,39 +8,41 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
-        Title="Reminder" Height="250" Width="500">
+        Title="Reminder" Height="205" Width="400">
 
     <Window.Resources>
         <c:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <ContextMenu x:Shared="false" x:Key="SysTrayMenu">
             <MenuItem Header="Exit" Command="{Binding TrayCloseCommand}" />
         </ContextMenu>
+        <Style x:Key="BaseControl" TargetType="Control">
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource BaseControl}">
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource BaseControl}">
+            <Setter Property="Margin" Value="5 0"/>
+            <Setter Property="Padding" Value="3"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BaseControl}">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Margin" Value="0 10 5 0"/>
+        </Style>
     </Window.Resources>
     <Window.Visibility>
         <Binding Path="WindowVisibility" Mode="TwoWay" Converter="{StaticResource BooleanToVisibilityConverter}"/>
     </Window.Visibility>
     
-    <Grid Margin="40 40">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
-
+    <StackPanel Margin="20 10">
         <tb:TaskbarIcon IconSource="../Resources/Bulb.ico"
                         ContextMenu="{StaticResource SysTrayMenu}"
                         LeftClickCommand="{Binding TrayLeftClickCommand}"/>
 
-        <Label Content="Notification text:" Grid.Column="0" Grid.Row="0"/>
-        <TextBox Text="{Binding NotificationText, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" Padding="5"/>
-        <Label Content="Time interval [min]:" Grid.Column="0" Grid.Row="2"/>
-        <TextBox Text="{Binding TimeInterval, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Padding="5"/>
-        <Button Content="Set timer" Command="{Binding SetTimerCommand}" IsDefault="True" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3"/>
-    </Grid>
+        <Label Content="Notification text:"/>
+        <TextBox Text="{Binding NotificationText, Mode=TwoWay}"/>
+        <Label Content="Time interval [min]:"/>
+        <TextBox Text="{Binding TimeInterval, Mode=TwoWay}"/>
+        <Button Content="Set timer" Command="{Binding SetTimerCommand}" IsDefault="True" HorizontalAlignment="Right"/>
+    </StackPanel>
 
 </Window>
