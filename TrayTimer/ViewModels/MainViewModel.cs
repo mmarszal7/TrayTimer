@@ -1,31 +1,39 @@
 ﻿namespace TrayTimer.ViewModel
 {
+    using System;
     using TrayTimer.Helpers;
 
     public class MainViewModel : BaseViewModel
     {
-        public Notification NotificationWindow { get; set; }
-        public double NotificationTimeInterval { get; set; } = 1;
-        public string NotificationText { get; set; } = "Reminder";
+        public ApplicationOptions Options { get; set; }
+
         public bool WindowVisibility { get; set; } = true;
         public RelayCommand TrayLeftClickCommand { get; set; }
         public RelayCommand SetTimerCommand { get; set; }
+        public RelayCommand SetPositionCommand { get; set; }
         public RelayCommand TrayCloseCommand { get; set; }
 
-        public MainViewModel(Notification notification)
+        public MainViewModel(ApplicationOptions options)
         {
-            NotificationWindow = notification;
+            Options = options;
 
             SetTimerCommand = new RelayCommand(SetTimer);
+            SetPositionCommand = new RelayCommand(SetPosition);
             TrayLeftClickCommand = new RelayCommand(() => { WindowVisibility = true; RaisePropertyChanged(); });
             TrayCloseCommand = new RelayCommand(() => { System.Environment.Exit(1); });
+            RaisePropertyChanged();
         }
 
-        public void SetTimer()
+        private void SetTimer()
         {
             WindowVisibility = false;
-            NotificationWindow.SetNotifiction(NotificationText, NotificationTimeInterval);
+            Options.OptionsChanged?.Invoke();
             RaisePropertyChanged();
+        }
+
+        private void SetPosition(object option)
+        {
+            Options.NotificationPosition = (DefaultLocation)Convert.ToInt32(option);
         }
     }
 }

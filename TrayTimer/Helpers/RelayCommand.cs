@@ -6,16 +6,28 @@
     public class RelayCommand : ICommand
     {
         readonly Action _execute;
+        readonly Action<object> _executeWithParameter;
         readonly Predicate<object> _canExecute;
+        private Action<string> mY;
 
         public RelayCommand(Action execute)
             : this(execute, null)
         {
         }
 
+        public RelayCommand(Action<object> execute) : this(execute, null)
+        {
+        }
+
         public RelayCommand(Action execute, Predicate<object> canExecute)
         {
             _execute = execute ?? throw new ArgumentNullException("execute");
+            _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        {
+            _executeWithParameter = execute ?? throw new ArgumentNullException("execute");
             _canExecute = canExecute;
         }
 
@@ -34,7 +46,10 @@
 
         public void Execute(object parameter)
         {
-            _execute();
+            if (_execute != null)
+                _execute();
+            else
+                _executeWithParameter(parameter);
         }
 
         #endregion

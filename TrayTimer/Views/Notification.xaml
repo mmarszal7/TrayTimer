@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Notification Popup" Width="300" SizeToContent="Height"
-        WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowInTaskbar="False"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True" ShowActivated="False" ShowInTaskbar="False"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Closing="Window_Closing">
 
@@ -28,16 +28,6 @@
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
-            <!--<EventTrigger RoutedEvent="Grid.MouseDown">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
-                            <SplineDoubleKeyFrame KeyTime="0:0:0" Value="1"/>
-                            <SplineDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-                        </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>-->
         </Grid.Triggers>
 
         <Grid.RenderTransform>
