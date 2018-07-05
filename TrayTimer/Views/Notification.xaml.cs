@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -34,7 +35,7 @@ namespace TrayTimer
         private void OnTimerTick(object sender, EventArgs e)
         {
             allTicks++;
-            SetPosition();
+            SetPosition(Options.NotificationPosition);
             SetColor();
             NotificationBody.ToolTip = $"Clicks: {clicks}/{allTicks}";
 
@@ -53,17 +54,25 @@ namespace TrayTimer
             }
         }
 
-        private void SetPosition()
+        private void SetPosition(DefaultLocation option)
         {
             int marginX = 150;
             int marginY = 20;
             var workingArea = System.Windows.SystemParameters.WorkArea;
 
-            switch (Options.NotificationPosition)
+            switch (option)
             {
                 case DefaultLocation.Random:
                     this.Left = rnd.Next(marginX, (int)workingArea.Width - marginX - (int)NotificationBody.Width);
                     this.Top = rnd.Next(marginY, (int)workingArea.Height - marginY - (int)NotificationBody.Height);
+                    break;
+                case DefaultLocation.RandomCorner:
+                    var enumValues = Enum.GetValues(typeof(DefaultLocation))
+                        .Cast<DefaultLocation>()
+                        .Where(w => w != DefaultLocation.Random)
+                        .ToList();
+                    var randomEnum = enumValues[rnd.Next(0, enumValues.Count)];
+                    this.SetPosition(randomEnum);
                     break;
                 case DefaultLocation.UpperLeft:
                     this.Left = marginX / 2 - (int)NotificationBody.Width;

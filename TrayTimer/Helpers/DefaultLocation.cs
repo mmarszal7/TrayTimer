@@ -6,6 +6,7 @@
         UpperLeft = 1,
         UpperRight = 2,
         LowerLeft = 3,
-        LowerRight = 4
+        LowerRight = 4,
+        RandomCorner = 5
     }
 }

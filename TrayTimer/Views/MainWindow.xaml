@@ -19,6 +19,7 @@
                 <MenuItem Header="Random colors" IsCheckable="True" IsChecked="{Binding Options.IsColorRandom, UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="Position" >
                     <MenuItem Header="Random" Command="{Binding SetPositionCommand}" CommandParameter="0"/>
+                    <MenuItem Header="Random corner" Command="{Binding SetPositionCommand}" CommandParameter="5"/>
                     <MenuItem Header="Upper left" Command="{Binding SetPositionCommand}" CommandParameter="1"/>
                     <MenuItem Header="Upper right" Command="{Binding SetPositionCommand}" CommandParameter="2"/>
                     <MenuItem Header="Lower left" Command="{Binding SetPositionCommand}" CommandParameter="3"/>
