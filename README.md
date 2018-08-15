@@ -2,7 +2,7 @@
 Tray Timer is a simple customizable notifications app that works in Windows tray. This WPF app will remind you to take a break or work with your habits.
 
 ## How to install?
-[Here is an installer.](./artifacts/TrayTimer.Setup.msi)
+[Here is an installer.](./artifacts)
 
 ## Screenshots:
 ### Main application windows:
