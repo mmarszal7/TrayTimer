@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrayTimer", "TrayTimer\TrayTimer.csproj", "{A32210DB-FC06-4C72-AE10-9614309F3201}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TrayTimer.Setup", "TrayTimer.Setup\TrayTimer.Setup.vdproj", "{3BF64623-4B10-4BC2-930D-88D9ABB58CBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,13 @@ Global
 		{A32210DB-FC06-4C72-AE10-9614309F3201}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A32210DB-FC06-4C72-AE10-9614309F3201}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A32210DB-FC06-4C72-AE10-9614309F3201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BF64623-4B10-4BC2-930D-88D9ABB58CBE}.Debug|Any CPU.ActiveCfg = Debug
+		{3BF64623-4B10-4BC2-930D-88D9ABB58CBE}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {370A5AB7-09B6-48DE-9690-72DBE389AE0E}
 	EndGlobalSection
 EndGlobal
